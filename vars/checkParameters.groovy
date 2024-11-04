@@ -5,6 +5,7 @@ def call() {
               error "ROOT_ARCHIVE_DIRECTORY must be set !";
           }
       } catch (Exception err) {
+          echo err
           currentBuild.result = "FAILURE";
       }
   }
