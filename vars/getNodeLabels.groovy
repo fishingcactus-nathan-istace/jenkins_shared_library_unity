@@ -1,3 +1,4 @@
-def call( String platform ) {
-    return "unity && ${platform.toLowerCase()}"
+def call( String platform )
+{
+   return "unity && ${platform.toLowerCase()}"
 }
