@@ -1,8 +1,8 @@
-def getVersion() {
+def getVersion( String project_folder ) {
     return powershell(
         label: "Check Unity Version",
         returnStdout: true,
-        script: getBuildScript("Check-Unity-Version.ps1 -ProjectPath ${getProjectFolder()}")
+        script: getBuildScript("Check-Unity-Version.ps1 -ProjectPath ${project_folder}")
     ).trim();
 }
 
@@ -19,7 +19,7 @@ def getInstallPath( String unity_version ) {
     return unity_install_path;
 }
 
-def activateLicense( String serial, String platform, String base_arguments ) {
+def activateLicense( String serial, String platform, String project_folder, String base_arguments ) {
   //  withCredentials([
   //      string(credentialsId: serial, variable: 'SERIAL'),
   //      string(credentialsId: 'UnityUsername', variable: 'USERNAME'),
@@ -28,7 +28,7 @@ def activateLicense( String serial, String platform, String base_arguments ) {
         timeout(time: 30, unit: 'MINUTES') {
             stage('Get And Activate Unity Version') {
                 
-                String unity_version = getVersion();
+                String unity_version = getVersion( project_folder );
                 String unity_install_path = getInstallPath( unity_version );
                 
                 powershell(
