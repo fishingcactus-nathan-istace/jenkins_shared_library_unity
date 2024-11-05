@@ -20,11 +20,11 @@ def getInstallPath( String unity_version ) {
 }
 
 def activateLicense( String serial, String platform, String base_arguments ) {
-    withCredentials([
-        string(credentialsId: serial, variable: 'SERIAL'),
-        string(credentialsId: 'UnityUsername', variable: 'USERNAME'),
-        string(credentialsId: 'UnityPassword', variable: 'PASSWORD')
-    ]) {
+  //  withCredentials([
+  //      string(credentialsId: serial, variable: 'SERIAL'),
+  //      string(credentialsId: 'UnityUsername', variable: 'USERNAME'),
+  //      string(credentialsId: 'UnityPassword', variable: 'PASSWORD')
+  //  ]) {
         timeout(time: 30, unit: 'MINUTES') {
             stage('Get And Activate Unity Version') {
                 
@@ -40,7 +40,7 @@ def activateLicense( String serial, String platform, String base_arguments ) {
                 return unity_install_path
             }
         }
-    }
+   // }
 }
 
 def deactivateLicense( String unity_install_path ) {
