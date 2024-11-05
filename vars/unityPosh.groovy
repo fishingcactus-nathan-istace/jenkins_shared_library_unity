@@ -30,6 +30,8 @@ def activateLicense( String serial, String platform, String project_folder, Stri
                 
                 String unity_version = getVersion( project_folder );
                 String unity_install_path = getInstallPath( unity_version );
+
+                echo "unity_version ${unity_version}, unity_install_path ${unity_install_path}"
                 
                 powershell(
                     label: "Activate Unity License",
