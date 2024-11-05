@@ -1,9 +1,9 @@
 def writeToCsFile( String csFilePath ) {
   def date = new Date((long)currentBuild.startTimeInMillis).format("MM/dd/yyyy HH:mm:ss a") ;
-  def commitSha = commitSha.get();
+  def sha = get();
   
   def text = readFile(file: fileName);
-  def commitText = text.replaceAll("(?s)commitSHA = \".*\"", "commitSHA = \"${commitSha} ${date}\"");
+  def commitText = text.replaceAll("(?s)commitSHA = \".*\"", "commitSHA = \"${sha} ${date}\"");
   
   writeFile( file: fileName, text: commitText );
 }
