@@ -5,7 +5,7 @@ def writeToCsFile( String csFilePath ) {
   def text = readFile(file: fileName);
   def commitText = text.replaceAll("(?s)commitSHA = \".*\"", "commitSHA = \"${sha} ${date}\"");
   
-  writeFile( file: fileName, text: commitText );
+  writeFile( file: csFilePath, text: commitText );
 }
 
 def get() {
