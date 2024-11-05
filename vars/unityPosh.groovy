@@ -20,18 +20,15 @@ def getInstallPath( String unity_version ) {
 }
 
 def activateLicense( String serial, String platform, String project_folder, String base_arguments ) {
-  //  withCredentials([
-  //      string(credentialsId: serial, variable: 'SERIAL'),
-  //      string(credentialsId: 'UnityUsername', variable: 'USERNAME'),
-  //      string(credentialsId: 'UnityPassword', variable: 'PASSWORD')
-  //  ]) {
+    withCredentials([
+        string(credentialsId: serial, variable: 'SERIAL'),
+        string(credentialsId: 'UnityUsername', variable: 'USERNAME'),
+        string(credentialsId: 'UnityPassword', variable: 'PASSWORD')
+    ]) {
         timeout(time: 30, unit: 'MINUTES') {
             stage('Get And Activate Unity Version') {
-                
                 String unity_version = getVersion( project_folder );
                 String unity_install_path = getInstallPath( unity_version );
-
-                echo "unity_version ${unity_version}, unity_install_path ${unity_install_path}"
                 
                 powershell(
                     label: "Activate Unity License",
@@ -42,7 +39,7 @@ def activateLicense( String serial, String platform, String project_folder, Stri
                 return unity_install_path
             }
         }
-   // }
+    }
 }
 
 def deactivateLicense( String unity_install_path ) {
